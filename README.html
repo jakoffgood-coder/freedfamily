@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Инструкция — База знаний</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Инструкция</h1>
+      <p class="muted">Как подключить экспорт Telegram и опубликовать базу знаний на GitHub Pages.</p>
+
+      <h2>1) Подготовка экспорта</h2>
+      <ol>
+        <li>В экспорте Telegram найдите <b>messages.html</b> (или похожий файл с перепиской).</li>
+        <li>Переименуйте его в <b>info.html</b>.</li>
+        <li>Положите рядом папки экспорта: <b>chats/</b>, <b>photos/</b>, <b>video_files/</b> и т.д.</li>
+      </ol>
+
+      <h2>2) Загрузка в GitHub</h2>
+      <ol>
+        <li>Создайте репозиторий.</li>
+        <li>Загрузите в корень репозитория файлы:
+          <ul>
+            <li><code>index.html</code>, <code>styles.css</code>, <code>app.js</code>, <code>kb_config.json</code></li>
+            <li><code>info.html</code> + папки медиа (<code>chats/</code> и т.п.)</li>
+          </ul>
+        </li>
+        <li>Settings → Pages → Deploy from a branch → <b>main</b> / <b>(root)</b>.</li>
+      </ol>
+
+      <h2>3) Настройка “Памяток”</h2>
+      <p>Откройте <code>kb_config.json</code> и добавьте закреплённые материалы:</p>
+      <pre style="white-space:pre-wrap;overflow:auto;background:rgba(18,31,61,.55);border:1px solid rgba(34,52,88,.8);padding:12px;border-radius:14px">{
+  "pinned": [
+    {"title": "Название", "id": "message12345", "note": "Короткая подсказка"}
+  ]
+}</pre>
+
+      <p class="muted tiny">
+        ID сообщения берётся из экспорта: у каждого блока есть <code>id="messageNNNN"</code>.
+        Откройте <code>info.html</code> и найдите нужное сообщение.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

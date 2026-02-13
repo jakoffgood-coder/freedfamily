@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>База знаний клуба</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">KB</div>
+      <div>
+        <div class="title">База знаний клуба</div>
+        <div class="subtitle">Поиск по архиву Telegram + рубрики</div>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <a class="btn ghost" href="info.html" target="_blank" rel="noreferrer">Открыть архив</a>
+      <a class="btn" href="#/kb">Открыть базу знаний</a>
+    </div>
+  </header>
+
+  <main class="home wrap" id="home">
+    <section class="card hero">
+      <h1>Быстро находите ответы по Honda Freed</h1>
+      <p class="muted">
+        Этот мини‑сайт превращает экспорт Telegram в базу знаний: поиск, категории, теги и “памятки”.
+      </p>
+
+      <div class="grid2">
+        <div class="card mini">
+          <div class="kicker">1) Подключите экспорт</div>
+          <ol>
+            <li>Положите рядом файл <b>info.html</b> (это ваш <i>messages.html</i>, переименованный).</li>
+            <li>Рядом положите папки экспорта (<b>chats/</b>, <b>photos/</b> …) — чтобы открывались медиа.</li>
+          </ol>
+        </div>
+
+        <div class="card mini">
+          <div class="kicker">2) Опубликуйте на GitHub Pages</div>
+          <ol>
+            <li>Загрузите все файлы в корень репозитория.</li>
+            <li>Settings → Pages → Deploy from branch → main / root.</li>
+            <li>Откройте ссылку сайта — готово.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn" href="#/kb">Перейти в базу знаний</a>
+        <a class="btn ghost" href="kb_config.json" target="_blank" rel="noreferrer">Настроить “памятки”</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Что вы получаете</h2>
+      <div class="bullets">
+        <div class="bullet"><b>Поиск</b><span class="muted">по тексту сообщений</span></div>
+        <div class="bullet"><b>Фильтры</b><span class="muted">по автору и категориям</span></div>
+        <div class="bullet"><b>Памятки</b><span class="muted">закреплённые важные сообщения</span></div>
+        <div class="bullet"><b>Ссылки</b><span class="muted">переход к оригиналу в info.html</span></div>
+      </div>
+    </section>
+  </main>
+
+  <main class="app wrap" id="app" hidden>
+    <aside class="sidebar">
+      <div class="section">
+        <div class="section-title">Поиск</div>
+        <input id="q" class="input" placeholder="Например: свечи, вариатор, лампы, фильтр..." />
+        <div class="row">
+          <select id="author" class="input">
+            <option value="">Все авторы</option>
+          </select>
+          <select id="category" class="input">
+            <option value="">Все категории</option>
+          </select>
+        </div>
+        <div class="row">
+          <button class="btn" id="btnSearch">Найти</button>
+          <button class="btn ghost" id="btnReset">Сброс</button>
+        </div>
+        <div class="muted tiny" id="status"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Памятки</div>
+        <div id="pinned" class="pinned"></div>
+        <div class="muted tiny">Редактируется в <code>kb_config.json</code></div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Категории</div>
+        <div id="cats" class="chips"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Полезное</div>
+        <a class="link" href="info.html" target="_blank" rel="noreferrer">Архив Telegram (info.html)</a>
+        <a class="link" href="README.html" target="_blank" rel="noreferrer">Инструкция</a>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="results-head">
+        <div class="results-title">Результаты</div>
+        <div class="muted tiny" id="count"></div>
+      </div>
+
+      <div id="results" class="results"></div>
+    </section>
+  </main>
+
+  <dialog id="modal" class="modal">
+    <form method="dialog" class="modal-card">
+      <div class="modal-head">
+        <div>
+          <div class="modal-title" id="mTitle">Сообщение</div>
+          <div class="muted tiny" id="mMeta"></div>
+        </div>
+        <button class="iconbtn" value="close" aria-label="Закрыть">✕</button>
+      </div>
+      <div class="modal-body" id="mBody"></div>
+      <div class="modal-actions">
+        <a id="mLink" class="btn" href="info.html" target="_blank" rel="noreferrer">Открыть в архиве</a>
+        <button class="btn ghost" value="close">Закрыть</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
